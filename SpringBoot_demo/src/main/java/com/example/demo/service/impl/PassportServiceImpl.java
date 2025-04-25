@@ -23,6 +23,6 @@ public class PassportServiceImpl implements PassportService {
     @Override
     public boolean captcha(ReqDto reqDto) {
         ApiResponse<?> match = imageCaptchaApplication.matching(reqDto.getCodeId(), reqDto.getDatas());
-        return !match.isSuccess();
+        return match.isSuccess();
     }
 }

@@ -56,7 +56,7 @@
 					'Content-Type': 'application/json;charset=UTF-8',
 				}).then(res=>{
 					if(res.status==200){
-						if(res.data){
+						if(res.data.data){
 							const useTimes = (data.stopTime - data.startTime) / 1000;
 							c.showTips(`验证成功,耗时${useTimes}秒`,1)//消息提示方法
 							setTimeout(()=>{
@@ -65,9 +65,15 @@
 							
 						}else {
 							c.showTips("验证失败，请重新尝试!", 0);
+							setTimeout(()=>{
+								tac.btnRefreshFun()//触发刷新
+							},2000)
 						}
 					}else{
 						c.showTips("验证码被黑洞吸走了！", 0);
+						setTimeout(()=>{
+							tac.btnRefreshFun()//触发刷新
+						},2000)
 					}
 				})
 			},
